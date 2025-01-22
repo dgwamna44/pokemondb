@@ -146,7 +146,7 @@ def save_pokemon():
     cursor.execute(query)
     current_teams = cursor.fetchall()
     if any((trainer_name, team_name) == t for t in current_teams):
-        return jsonify({'message': f'Error: {(trainer_name, team_name)} combination exists!'})
+        return jsonify({'message': f'Error: {(trainer_name, team_name)} Duplicate team and trainer combination exists!'})
     else:
         for member in team:
             query = """INSERT INTO pokemondb.stored_pokemon (pokedex_id, name, trainer_name, team_name, 
