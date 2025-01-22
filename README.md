@@ -73,17 +73,6 @@ sql
 Copy
 Edit
 
-**Notes**:
-
-- Ensure that the `requirements.txt` file lists all necessary Python packages for your project.
-- Update the database configuration section with specific details relevant to your setup.
-- Include any additional information that might help users understand and contribute to your project.
-
-Feel free to customize this template to better fit the specifics of your project!
-::contentReference[oaicite:0]{index=0}
- 
-
-
 
 
 
