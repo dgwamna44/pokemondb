@@ -1,24 +1,9 @@
 let totalSavedPokemon = 0;
 let currentTeam = [];
 let pokemonTypes = [
-  "normal",
-  "fire",
-  "water",
-  "electric",
-  "grass",
-  "ice",
-  "fighting",
-  "poison",
-  "ground",
-  "flying",
-  "psychic",
-  "bug",
-  "rock",
-  "ghost",
-  "dragon",
-  "dark",
-  "steel",
-  "fairy",
+  "normal", "fire", "water", "electric", "grass", "ice", "fighting", "poison",
+  "ground", "flying", "psychic", "bug", "rock", "ghost", "dragon", "dark",
+  "steel", "fairy"
 ];
 let type_images = [];
 
@@ -77,9 +62,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // Update the grid cell with new data
         const cell = document.querySelector(`#choice-${i}`);
         cell.innerHTML = `
-                    <img src="${data.sprite}" alt="${data.name}" style="width: 100%; height: auto;">
-                    <p class="pokemon-name">#${data.id}<br>${data.name}</p>
-                `;
+          <img src="${data.sprite}" alt="${data.name}" style="width: 100%; height: auto;">
+          <p class="pokemon-name">#${data.id}<br>${data.name}</p>
+        `;
         cell.dataset.pokemon = JSON.stringify(data);
         cell.addEventListener("click", showModal);
       } catch (error) {
@@ -96,30 +81,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalBody = document.getElementById("modal-body");
     const pokemonCry = data.cry;
     const level = Number(document.getElementById("level-dropdown").value);
-    hp = Math.floor(((data.hp * 2 + data.ivs[0]) * level) / 100 + level + 10);
-    attack = Math.floor(
-      ((data.attack * 2 + data.ivs[1]) * level) / 100 + 5
-    );
-    defense = Math.floor(
-      ((data.defense * 2 + data.ivs[2]) * level) / 100 + 5
-    );
-    specialAttack = Math.floor(
-      ((data["special-attack"] * 2 + data.ivs[3]) * level) /
-        100 +
-        5
-    );
-    specialDefense = Math.floor(
-      ((data["special-defense"] * 2 + data.ivs[4]) * level) /
-        100 +
-        5
-    );
+    const hp = Math.floor(((data.hp * 2 + data.ivs[0]) * level) / 100 + level + 10);
+    attack = Math.floor(((data.attack * 2 + data.ivs[1]) * level) / 100 + 5);
+    defense = Math.floor(((data.defense * 2 + data.ivs[2]) * level) / 100 + 5);
+    specialAttack = Math.floor(((data["special-attack"] * 2 + data.ivs[3]) * level) / 100 + 5);
+    specialDefense = Math.floor(((data["special-defense"] * 2 + data.ivs[4]) * level) / 100 + 5);
     speed = Math.floor(((data.speed * 2 + data.ivs[5]) * level) / 100 + 5);
-    type = data.type;
-    pokemonName = data.name;
-    ability = data.ability;
-    nature = data.nature[0];
-    sprite = data.sprite;
-    moves = data.moves;
+    const type = data.type;
+    const pokemonName = data.name;
+    const ability = data.ability;
+    const nature = data.nature[0];
+    const sprite = data.sprite;
+    const moves = data.moves;
 
     if (type.includes("/")) {
       type_images.push(type.split("/")[0]);
@@ -156,43 +129,44 @@ document.addEventListener("DOMContentLoaded", () => {
     crySound.play();
 
     modalBody.innerHTML = `
-        <div class="modal-header">
-            <div class="modal-header-content">
-                <h1>${pokemonName}</h1> 
-                <h3>Lvl. ${level}</h3>
-                <h3>Type: ${type} </h3>
-                <h3>Ability: ${ability}</h3>
-                <h3>Nature: ${nature}</h3>
-            </div>
-            <img src="${sprite}" alt="${pokemonName}" id="pokemon-sprite">
-            <div class="icon-container">
-                <div class="icon ${type_images[0].toLowerCase()}">
-                    <img src="icons/${type_images[0].toLowerCase()}.svg/">
-                </div>
-                ${type_images[1] ? `<div class="icon ${type_images[1].toLowerCase()}"><img src="icons/${type_images[1].toLowerCase()}.svg/"></div>` : ''}
-            </div>
+      <div class="modal-header">
+        <div class="modal-header-content">
+          <h1>${pokemonName}</h1> 
+          <h3>Lvl. ${level}</h3>
+          <h3>Type: ${type} </h3>
+          <h3>Ability: ${ability}</h3>
+          <h3>Nature: ${nature}</h3>
         </div>
-        <div class="modal-content-body">
-            <div class="modal-stats">
-                ${createStatBar('HP', hp, data.nature[1], data.nature[2])}
-                ${createStatBar('Attack', attack, data.nature[1], data.nature[2])}
-                ${createStatBar('Defense', defense, data.nature[1], data.nature[2])}
-                ${createStatBar('Sp. Attack', specialAttack, data.nature[1], data.nature[2])}
-                ${createStatBar('Sp. Defense', specialDefense, data.nature[1], data.nature[2])}
-                ${createStatBar('Speed', speed, data.nature[1], data.nature[2])}
-            </div>
-            <div id = "move-info">
-              <p class="${moves[0]['type'].toLowerCase()}-text">${moves[0]['name'].toUpperCase()} </p>
-              <p class="${moves[1]['type'].toLowerCase()}-text"> ${moves[1]['name'].toUpperCase()} </p>
-              <p class="${moves[2]['type'].toLowerCase()}-text"> ${moves[2]['name'].toUpperCase()} </p>
-              <p class="${moves[3]['type'].toLowerCase()}-text"> ${moves[3]['name'].toUpperCase()} </p>
-            </div>
+        <img src="${sprite}" alt="${pokemonName}" id="pokemon-sprite">
+        <div class="icon-container">
+          <div class="icon ${type_images[0].toLowerCase()}">
+            <img src="icons/${type_images[0].toLowerCase()}.svg/">
+          </div>
+          ${type_images[1] ? `<div class="icon ${type_images[1].toLowerCase()}"><img src="icons/${type_images[1].toLowerCase()}.svg/"></div>` : ''}
         </div>
-        <div class="modal-footer">
-            <button id="add-to-team">Add to Team</button>
+      </div>
+      <div class="modal-content-body">
+        <div class="modal-stats">
+          ${createStatBar('HP', hp, data.nature[1], data.nature[2])}
+          ${createStatBar('Attack', attack, data.nature[1], data.nature[2])}
+          ${createStatBar('Defense', defense, data.nature[1], data.nature[2])}
+          ${createStatBar('Sp. Attack', specialAttack, data.nature[1], data.nature[2])}
+          ${createStatBar('Sp. Defense', specialDefense, data.nature[1], data.nature[2])}
+          ${createStatBar('Speed', speed, data.nature[1], data.nature[2])}
         </div>
+        <div id="move-info">
+          <p class="${moves[0]['type'].toLowerCase()}-text">${moves[0]['name'].toUpperCase()}</p>
+          <p class="${moves[1]['type'].toLowerCase()}-text">${moves[1]['name'].toUpperCase()}</p>
+          <p class="${moves[2]['type'].toLowerCase()}-text">${moves[2]['name'].toUpperCase()}</p>
+          <p class="${moves[3]['type'].toLowerCase()}-text">${moves[3]['name'].toUpperCase()}</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="add-to-team">Add to Team</button>
+      </div>
     `;
     modal.style.display = "block";
+
     document.querySelector("#add-to-team").addEventListener("click", () => {
       let currentBoxNumber = totalSavedPokemon + 1;
       if (currentBoxNumber > 6) {
@@ -205,9 +179,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       const box = document.querySelector(`#box-${currentBoxNumber}`);
       box.innerHTML = `
-                <img src="${sprite}" style="width: 100%; height: auto;">
-                <p>${pokemonName}</p>
-            `;
+        <img src="${sprite}" style="width: 100%; height: auto;">
+        <p>${pokemonName}</p>
+      `;
       alert(data.name + " added to team!");
       const pokemon = {
         name: pokemonName,
@@ -250,13 +224,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     const width = statName === "HP" ? statValue : statValue * 1.5;
     return `
-            <div class="stat-container">
-                <span class="stat-name">${statName}: <span style="color: ${color};">${statValue} ${sign}</span></span>
-                <div class="stat-bar">
-                    <div class="stat-bar-fill" style="width: ${width}px"></div>
-                </div>
-            </div>
-        `;
+      <div class="stat-container">
+        <span class="stat-name">${statName}: <span style="color: ${color};">${statValue} ${sign}</span></span>
+        <div class="stat-bar">
+          <div class="stat-bar-fill" style="width: ${width}px"></div>
+        </div>
+      </div>
+    `;
   }
 
   // Close the modal
@@ -264,80 +238,119 @@ document.addEventListener("DOMContentLoaded", () => {
     closeButton.addEventListener("click", () => {
       closeButton.closest(".modal").style.display = "none";
     });
+  });
 
-    function showSavedPokemonModal() {
-      const modalBody = document.getElementById("pokemon-info");
-      addTeamButton = document.getElementById("add-to-team");
-      addTeamButton.style.display = "none";
-      crySound.play();
-      modalBody.style.display = "block";
-    }
+  function showSavedPokemonModal(data) {
+    const modal = document.getElementById("pokemon-info");
+    const modalBody = document.getElementById("save-team-modal");
+    const level = data.level;
+    const hp = data.hp;
+    const attack = data.attack;
+    const defense = data.defense;
+    const specialAttack = data.specialAttack;
+    const specialDefense = data.specialDefense;
+    const speed = data.speed;
+    const pokemonName = data.name;
+    const type = data.type;
+    const ability = data.ability;
+    const nature = data.nature[0];
+    const moves = data.moves;
 
-    document.querySelectorAll(".grid-cell").forEach((cell) => {
-      cell.addEventListener("click", (event) => {
-        const data = currentTeam.find(
-          (pokemon) =>
-            pokemon.name === event.currentTarget.querySelector("p").textContent
-        );
-        if (data) {
-          showSavedPokemonModal();
-        }
-      });
+    modalBody.innerHTML = `
+      <div class="modal-header">
+        <h1>${pokemonName}</h1> 
+        <h3>Lvl. ${level}</h3>
+        <h3>Type: ${type} </h3>
+        <h3>Ability: ${ability}</h3>
+        <h3>Nature: ${nature}</h3>
+      </div>
+      <div class="modal-content-body">
+        <img src="${data.sprite}" alt="${pokemonName}">
+        <div class="icon ${type_images[0]}">
+          <img src="icons/${type_images[0]}.svg/">
+        </div>
+        ${type_images[1] ? `<br><div class="icon ${type_images[1]}"><img src="icons/${type_images[1]}.svg/"></div>` : ''}
+        <div class="modal-stats">
+          ${createStatBar('HP', hp, data.nature[1], data.nature[2])}
+          ${createStatBar('Attack', attack, data.nature[1], data.nature[2])}
+          ${createStatBar('Defense', defense, data.nature[1], data.nature[2])}
+          ${createStatBar('Sp. Attack', specialAttack, data.nature[1], data.nature[2])}
+          ${createStatBar('Sp. Defense', specialDefense, data.nature[1], data.nature[2])}
+          ${createStatBar('Speed', speed, data.nature[1], data.nature[2])}
+        </div>
+        <div id="move-info">
+          <p class="${moves[0]['type'].toLowerCase()}-text">${moves[0]['name'].toUpperCase()}</p>
+          <p class="${moves[1]['type'].toLowerCase()}-text">${moves[1]['name'].toUpperCase()}</p>
+          <p class="${moves[2]['type'].toLowerCase()}-text">${moves[2]['name'].toUpperCase()}</p>
+          <p class="${moves[3]['type'].toLowerCase()}-text">${moves[3]['name'].toUpperCase()}</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <p>Ability: ${data.ability}</p>
+        <p>Nature: ${data.nature}</p>
+      </div>
+    `;
+    modal.style.display = "block";
+  }
+
+  document.querySelectorAll(".grid-cell").forEach((cell) => {
+    cell.addEventListener("click", (event) => {
+      const data = currentTeam.find(
+        (pokemon) => pokemon.name === event.currentTarget.querySelector("p").textContent
+      );
+      if (data) {
+        showSavedPokemonModal(data);
+      }
     });
+  });
 
-    document
-      .getElementById("clear-team-button")
-      .addEventListener("click", () => {
-        for (let i = 1; i <= 6; i++) {
-          const box = document.querySelector(`#box-${i}`);
-          box.innerHTML = '<span class="placeholder">?</span>';
-        }
-        currentTeam = [];
-        totalSavedPokemon = 0;
-      });
+  document.getElementById("clear-team-button").addEventListener("click", () => {
+    for (let i = 1; i <= 6; i++) {
+      const box = document.querySelector(`#box-${i}`);
+      box.innerHTML = '<span class="placeholder">?</span>';
+    }
+    currentTeam = [];
+    totalSavedPokemon = 0;
+    saveButton.hidden = true;
+  });
 
-    document
-      .getElementById("save-team-button")
-      .addEventListener("click", async () => {
-        const saveTeamModal = document.getElementById("save-team-modal");
-        saveTeamModal.style.display = "block";
-        document
-          .getElementById("save-team-name-button")
-          .addEventListener("click", async () => {
-            debugger;
-            const teamName = document.getElementById("team-name").value;
-            const trainerName = document.getElementById("trainer-name").value;
-            if (!teamName) {
-              alert("Please enter a team name!");
-              return;
-            }
-            if (!trainerName) {
-              alert("Please enter a trainer name!");
-              return;
-            }
-            try {
-              debugger;
-              const response = await fetch(
-                "http://127.0.0.1:5500/save-pokemon",
-                {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({
-                    trainerName: trainerName,
-                    teamName: teamName,
-                    team: currentTeam
-                  }),
-                }
-              );
-              saveTeamModal.style.display = "None";
-              alert("Team saved successfully!");
-            } catch (error) {
-              console.error("Error saving team:", error);
-              alert("Failed to save team. Please try again.");
-            }
-          });
+  document.getElementById("save-team-button").addEventListener("click", () => {
+    saveTeamModal.style.display = "block";
+  });
+
+  document.getElementById("save-team-name-button").addEventListener("click", async () => {
+    debugger;
+    const teamName = document.getElementById("team-name").value;
+    const trainerName = document.getElementById("trainer-name").value;
+    if (!teamName) {
+      alert("Please enter a team name!");
+      return;
+    }
+    if (!trainerName) {
+      alert("Please enter a trainer name!");
+      return;
+    }
+    try {
+      const response = await fetch("http://127.0.0.1:5500/save-pokemon", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          trainerName: trainerName,
+          teamName: teamName,
+          team: currentTeam,
+        }),
       });
+      if (response.ok) {
+        alert("Team saved successfully!");
+        saveTeamModal.style.display = "none";
+      } else {
+        alert("Failed to save team. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error saving team:", error);
+      alert("Failed to save team. Please try again.");
+    }
   });
 });

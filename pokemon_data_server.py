@@ -142,20 +142,26 @@ def save_pokemon():
         dbname = DB_NAME, user = DB_USER, password = DB_PASSWORD, host = DB_HOST, port = DB_PORT
     )
     cursor = conn.cursor()
-    for member in team:
-        query = """INSERT INTO pokemondb.stored_pokemon (pokedex_id, name, trainer_name, team_name, 
-        date_modified, type, level, hp, attack, defense, sp_attack, sp_defense, 
-        speed, iv_0,iv_1,iv_2,iv_3,iv_4,iv_5, nature, ability, move_1, move_2, move_3, move_4)
-        VALUES (%s, %s, %s, %s, CURRENT_DATE , %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """
-        cursor.execute(query, (member['id'], member['name'], trainer_name, team_name, 
-                     member['type'], member['level'],member['hp'], member['attack'], member['defense'], 
-                     member['specialAttack'], member['specialDefense'], member['speed'], member['ivs'][0],member['ivs'][1],
-                     member['ivs'][2],member['ivs'][3],member['ivs'][4],member['ivs'][5], member['nature'], member['ability'],
-                     member['moves'][0]['name'], member['moves'][1]['name'], member['moves'][2]['name'], member['moves'][3]['name']))
-    conn.commit()
-    cursor.close()
-    conn.close()
-    return jsonify({'message': 'Pokemon saved successfully'})
+    query = """select distinct trainer_name, team_name from pokemondb.stored_pokemon;"""
+    cursor.execute(query)
+    current_teams = cursor.fetchall()
+    if any((trainer_name, team_name) == t for t in current_teams):
+        return jsonify({'message': f'Error: {(trainer_name, team_name)} combination exists!'})
+    else:
+        for member in team:
+            query = """INSERT INTO pokemondb.stored_pokemon (pokedex_id, name, trainer_name, team_name, 
+            date_modified, type, level, hp, attack, defense, sp_attack, sp_defense, 
+            speed, iv_0,iv_1,iv_2,iv_3,iv_4,iv_5, nature, ability, move_1, move_2, move_3, move_4)
+            VALUES (%s, %s, %s, %s, CURRENT_DATE , %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """
+            cursor.execute(query, (member['id'], member['name'], trainer_name, team_name, 
+                        member['type'], member['level'],member['hp'], member['attack'], member['defense'], 
+                        member['specialAttack'], member['specialDefense'], member['speed'], member['ivs'][0],member['ivs'][1],
+                        member['ivs'][2],member['ivs'][3],member['ivs'][4],member['ivs'][5], member['nature'], member['ability'],
+                        member['moves'][0]['name'], member['moves'][1]['name'], member['moves'][2]['name'], member['moves'][3]['name']))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return jsonify({'message': 'Pokemon saved successfully'})
 
 if __name__ == '__main__':
     app.run(debug=True, port=5500)
