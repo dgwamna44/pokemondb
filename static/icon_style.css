@@ -1,0 +1,243 @@
+html body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 1rem;
+    background: #effdff;
+}
+
+h1 {
+    text-align: center;
+    margin: 2em;
+    color: #333;
+}
+
+.wrapper {
+    width: 800px;
+    margin: auto auto;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(6, 1fr);
+    align-content: center;
+    align-items: center;
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    height: 140px;
+    width: 140px;
+    margin:auto;
+    transition: 200ms all;
+}
+
+.icon:hover{
+    filter: saturate(200%);
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.icon img {
+    height: 60%;
+    width: 60%;
+    margin: 25%;
+}
+
+.bug {
+    background: #92BC2C;
+    box-shadow: 0 0 20px #92BC2C;
+    color:  #92BC2C
+}
+
+.dark {
+    background: #595761;
+    box-shadow: 0 0 20px #595761;
+    color: #595761;
+}
+
+.dragon {
+    background: #0C69C8;
+    box-shadow: 0 0 20px #0C69C8;
+    color: #0C69C8;
+}
+
+.electric {
+    background: #F2D94E;
+    box-shadow: 0 0 20px #F2D94E;
+    color: #F2D94E;
+}
+
+.fire {
+    background: #FBA54C;
+    box-shadow: 0 0 20px #FBA54C;
+    color: #FBA54C;
+}
+
+.fairy {
+    background: #EE90E6;
+    box-shadow: 0 0 20px #EE90E6;
+    color: #EE90E6;
+}
+
+.fighting {
+    background: #D3425F;
+    box-shadow: 0 0 20px #D3425F;
+    color: #D3425F;
+}
+
+.flying {
+    background: #A1BBEC;
+    box-shadow: 0 0 20px #A1BBEC;
+    color: #A1BBEC;
+}
+
+.ghost {
+    background: #5F6DBC;
+    box-shadow: 0 0 20px #5F6DBC;
+    color: #5F6DBC;
+}
+
+.grass {
+    background: #5FBD58;
+    box-shadow: 0 0 20px #5FBD58;
+    color: #5FBD58;
+}
+
+.ground {
+    background: #DA7C4D;
+    box-shadow: 0 0 20px #DA7C4D;
+    color: #DA7C4D;
+}
+
+.ice {
+    background: #75D0C1;
+    box-shadow: 0 0 20px #75D0C1;
+    color: #75D0C1;
+}
+
+.normal {
+    background: #A0A29F;
+    box-shadow: 0 0 20px #A0A29F;
+    color: #A0A29F;
+}
+
+.poison {
+    background: #B763CF;
+    box-shadow: 0 0 20px #B763CF;
+    color: #B763CF;
+}
+
+.psychic {
+    background: #FA8581;
+    box-shadow: 0 0 20px #FA8581;
+    color: #FA8581;
+}
+
+.rock {
+    background: #C9BB8A;
+    box-shadow: 0 0 20px #C9BB8A;
+    color: #C9BB8A;
+}
+
+.steel {
+    background: #5695A3;
+    box-shadow: 0 0 20px #5695A3;
+    color: #5695A3;
+}
+
+.water {
+    background: #539DDF;
+    box-shadow: 0 0 20px #539DDF;
+    color: #539DDF;
+}
+
+.bug-text {
+    color:  #92BC2C
+}
+
+.dark-text {
+    color: #595761;
+}
+
+.dragon-text {
+    color: #0C69C8;
+}
+
+.electric-text {
+    color: #F2D94E;
+}
+
+.fire-text {
+    color: #FBA54C;
+}
+
+.fairy-text {
+    color: #EE90E6;
+}
+
+.fighting-text {
+    color: #D3425F;
+}
+
+.flying-text {
+    color: #A1BBEC;
+}
+
+.ghost-text {
+    color: #5F6DBC;
+}
+
+.grass-text {
+    color: #5FBD58;
+}
+
+.ground-text {
+    color: #DA7C4D;
+}
+
+.ice-text {
+    color: #75D0C1;
+}
+
+.normal-text {
+    color: #A0A29F;
+}
+
+.poison-text {
+    color: #B763CF;
+}
+
+.psychic-text {
+    color: #FA8581;
+}
+
+.rock-text {
+    color: #C9BB8A;
+}
+
+.steel-text {
+    color: #5695A3;
+}
+
+.water-text {
+    color: #539DDF;
+}
+
+
+.type-images {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px; /* Add some space between the icons */
+}

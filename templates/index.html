@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon team creator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='icon_style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+
+<body>
+    <div class="header">
+        <select id="generation-dropdown">
+            <option value="" disabled selected>All Generations</option>
+            <option value="1">Generation 1 (Kanto)</option>
+            <option value="2">Generation 2 (Johto)</option>
+            <option value="3">Generation 3 (Hoenn)</option>
+            <option value="4">Generation 4 (Sinnoh)</option>
+            <option value="5">Generation 5 (Unova)</option>
+            <option value="6">Generation 6 (Kalos)</option>
+            <option value="7">Generation 7 (Alola)</option>
+            <option value="8">Generation 8 (Galar)</option>
+            <option value="9">Generation 9 (Paldea)</option>
+        </select>
+        <select id="level-dropdown">
+            <option value="50" disabled selected>Select Level:</option>
+        </select>
+    </div>
+    <script>
+        const levelDropdown = document.getElementById('level-dropdown');
+        for (let i = 1; i <= 100; i++) {
+            const option = document.createElement('option');
+            option.value = i;
+            option.text = i;
+            levelDropdown.appendChild(option);
+        }
+    </script>
+
+    <!-- Random Pokémon selection boxes -->
+    <div class="random-selection">
+        <div class="random-box" id="choice-1"><span class="placeholder"></span></div>
+        <div class="random-box" id="choice-2"><span class="placeholder"></span></div>
+        <div class="random-box" id="choice-3"><span class="placeholder"></span></div>
+    </div>
+
+    <!-- Center Pokéball -->
+    <div class="pokeball">
+        <div class="top-half"></div>
+        <div class="bottom-half"></div>
+        <div class="center-circle">
+            <div class="inner-circle"></div>
+        </div>
+    </div>
+
+    <!-- Pokémon info modal -->
+    <div id="pokemon-info" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Save team modal -->
+    <div id="save-team-modal" class="modal">
+        <div class="save-team-modal-content">
+            <span class="close">&times;</span>
+            <div id="save-team-body">
+                <label for="trainer-name">Trainer Name:</label>
+                <input type="text" id="trainer-name" name="trainer-name">
+                <br>
+                <label for="team-name">Team Name:</label>
+                <input type="text" id="team-name" name="team-name">
+                <br>
+                <button id="save-team-name-button">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Save and clear team buttons -->
+    <div class="save-team">
+        <button id="save-team-button">Save Team</button>
+    </div>
+
+    <div class="clear-team">
+        <button id="clear-team-button">Clear Team</button>
+    </div>
+
+    <!-- Pokémon grid -->
+    <div class="pokemon-grid">
+        <div class="grid-cell" id="box-1"><span class="placeholder">?</span></div>
+        <div class="grid-cell" id="box-2"><span class="placeholder">?</span></div>
+        <div class="grid-cell" id="box-3"><span class="placeholder">?</span></div>
+        <div class="grid-cell" id="box-4"><span class="placeholder">?</span></div>
+        <div class="grid-cell" id="box-5"><span class="placeholder">?</span></div>
+        <div class="grid-cell" id="box-6"><span class="placeholder">?</span></div>
+    </div>
+</body>
+
+</html>
