@@ -57,8 +57,16 @@ Access the Application: Open your browser and navigate to http://127.0.0.1:5000.
 
 Usage
 Generate Pokémon: Click on the Pokéball to generate random Pokémon choices.
+![image](https://github.com/user-attachments/assets/a89ced1d-9e26-483b-9fa3-1cb9408970e6)
+
 Add to Team: Click on a Pokémon to view details and add it to your team.
+![image](https://github.com/user-attachments/assets/3c17e563-44ba-45e4-8486-c5b681934fe9)
+
 Save Team: Once your team has 6 Pokémon, save it with a custom name.
+![image](https://github.com/user-attachments/assets/f5d4f492-b1f2-4b0c-b611-914130c8cd41)
+![image](https://github.com/user-attachments/assets/19d40c82-aea8-4302-b58a-866791e45111)
+
+
 Manage Teams: View and manage your saved teams.
 Contributing
 Contributions are welcome! Please fork the repository and create a pull request with your changes.
